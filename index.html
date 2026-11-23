@@ -36,12 +36,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 
 /* header */
 header.top{background:var(--purple);color:#fff}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0}
 .brand{display:flex;align-items:center;gap:14px}
-.brand svg{width:46px;height:auto;flex:none}
-.plate{background:var(--yellow);color:var(--purple);padding:5px 12px 6px;line-height:1}
-.plate strong{display:block;font:400 28px/1 var(--head);letter-spacing:.02em}
-.plate small{display:block;color:var(--black);font-weight:600;font-size:11.5px;letter-spacing:.28em;margin-top:3px}
+.brand-logo{display:block;width:92px;height:92px;flex:none;object-fit:contain}
 .tools{display:flex;align-items:center;gap:10px;font-size:14px}
 .tools .date{opacity:.85}
 .btn{font:600 15px var(--body);border:0;cursor:pointer;padding:10px 18px;background:var(--yellow);color:var(--purple);border-radius:2px}
@@ -56,13 +53,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* lead */
 .lead{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;padding:34px 0 18px}
-.hero{position:relative;background:var(--purple);color:#fff;min-height:420px;padding:32px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
-.hero .mic{position:absolute;right:-30px;top:-20px;width:300px;opacity:.12}
+.hero{position:relative;background:var(--purple);color:#fff;min-height:420px;padding:26px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;gap:22px;overflow:hidden}
+.hero-image{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:var(--purple-deep)}
+.hero-copy{position:relative;min-width:0}
 .tag{display:inline-block;background:var(--yellow);color:var(--purple);font-weight:600;font-size:13.5px;padding:2px 10px;margin-bottom:12px;align-self:flex-start}
-.hero h1{font:400 clamp(28px,4.4vw,46px)/1.08 var(--head);margin:0 0 14px;max-width:18ch;position:relative}
-.hero p{margin:0 0 16px;max-width:52ch;color:#e6dcf7;position:relative}
+.hero h1{font:400 clamp(22px,2.3vw,30px)/1.08 var(--head);margin:0 0 14px;max-width:18ch;overflow-wrap:anywhere}
+.hero p{margin:0 0 16px;max-width:52ch;color:#e6dcf7}
 .meta{font-size:14px;color:var(--muted)}
-.hero .meta{color:#cbbbe8;position:relative}
+.hero .meta{color:#cbbbe8}
 .side h2{font:400 20px var(--head);margin:0 0 6px;padding-bottom:10px;border-bottom:4px solid var(--yellow)}
 .side article{padding:14px 0;border-bottom:1px solid var(--line)}
 .side h3{margin:4px 0;font-size:18px;line-height:1.3;font-weight:600}
@@ -112,15 +110,17 @@ footer a:hover{color:var(--yellow)}
 
 @media (max-width:860px){
   .lead,.duo{grid-template-columns:1fr}
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .feed{grid-template-columns:1fr 1fr}
   .audio .wrap{grid-template-columns:1fr;text-align:left}
   .tools .date{display:none}
 }
 @media (max-width:560px){
   .feed{grid-template-columns:1fr}
-  .hero{min-height:360px;padding:22px}
-  .plate strong{font-size:22px}
-  .brand svg{width:38px}
+  .hero{grid-template-columns:1fr;min-height:0;padding:22px}
+  .hero-image{max-height:calc(100vw - 84px)}
+  .bar{gap:10px}
+  .brand-logo{width:72px;height:72px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -150,8 +150,7 @@ footer a:hover{color:var(--yellow)}
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#top" aria-label="Hayle Media Solutions home">
-      <svg viewBox="520 310 460 640" style="color:#fff" role="img" aria-label="Microphone"><use href="#mic"/></svg>
-      <span class="plate"><strong>HAYLE</strong><small>Media Solutions</small></span>
+      <img class="brand-logo" src="assets/hayle-media-solutions-logo.png" alt="">
     </a>
     <div class="tools">
       <span class="date" id="date"></span>
@@ -226,6 +225,7 @@ footer a:hover{color:var(--yellow)}
 <script>
 /* Edit this list to publish your own stories. */
 const STORIES=[
+ {c:"Wararka",t:"Agaasimihii iska Casilay Cusbitaalka Burco ayaa Ka waramay Sababta iscasilaadiisa",d:"Warbixin ku saabsan sababta uu agaasimihii Cusbitaalka Burco xilka uga tagay.",a:"@haylemedia",w:"23 Nov 2026",i:"assets/news1.jpeg"},
  {c:"Politics",t:"Sample headline: Lawmakers open a new session in Berbera",d:"Replace this text with your own report. Add the key facts in the first two sentences.",a:"Hayle Newsroom",w:"2 hours ago"},
  {c:"Business",t:"Sample headline: Livestock traders prepare for the export season",d:"Replace this text with your own report from the port, the market or the trading floor.",a:"Business desk",w:"3 hours ago"},
  {c:"Society",t:"Sample headline: Neighbourhood groups launch a clean-up campaign",d:"Replace this text with a community story, with names, places and quotes.",a:"Community desk",w:"5 hours ago"},
@@ -241,7 +241,7 @@ const $=id=>document.getElementById(id);
 const card=(s,cls)=>`<article><span class="cat">${s.c}</span><a href="#news"><h3>${s.t}</h3></a><span class="meta">${s.a} · ${s.w}</span></article>`;
 
 const h=STORIES[0];
-$("hero").innerHTML=`<svg class="mic" viewBox="520 310 460 640" style="color:#fff" aria-hidden="true"><use href="#mic"/></svg><span class="tag">${h.c}</span><h1>${h.t}</h1><p>${h.d}</p><span class="meta">${h.a} · ${h.w}</span>`;
+$("hero").innerHTML=`<img class="hero-image" src="${h.i}" alt="Hayle Media news graphic: ${h.t}"><div class="hero-copy"><span class="tag">${h.c}</span><h1>${h.t}</h1><p>${h.d}</p><span class="meta">${h.a} · ${h.w}</span></div>`;
 $("side").innerHTML=STORIES.slice(1,5).map(s=>card(s)).join("");
 $("tick").textContent=STORIES.slice(0,3).map(s=>s.t.replace("Sample headline: ","")).join("   •   ");
 
