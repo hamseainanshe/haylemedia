@@ -1,13 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=hayle-media-solutions.html">
-  <title>Hayle Media Solutions</title>
-  <link rel="canonical" href="hayle-media-solutions.html">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hayle Media Solutions – News from Berbera Somaliland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@400;500;600&display=swap">
+<style>
+:root{
+  --purple:#3d1676; --purple-deep:#2a0f52; --yellow:#ffdd00; --black:#0d0a14;
+  --bg:#f6f3fb; --surface:#ffffff; --text:#1b1230; --muted:#625b73; --line:#ddd5ec;
+  --head:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Outfit","Segoe UI",Helvetica,Arial,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#150a29;--surface:#1f1238;--text:#f1ecfa;--muted:#b3a8cc;--line:#392655;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#150a29;--surface:#1f1238;--text:#f1ecfa;--muted:#b3a8cc;--line:#392655;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.55 var(--body)}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+
+/* ticker */
+.ticker{background:var(--black);color:#fff;font-size:14px;overflow:hidden;white-space:nowrap}
+.ticker .wrap{display:flex;align-items:center;gap:14px;height:38px}
+.ticker b{background:var(--yellow);color:var(--purple);font-family:var(--head);font-weight:400;padding:3px 10px;flex:none}
+.ticker span{overflow:hidden;text-overflow:ellipsis}
+
+/* header */
+header.top{background:var(--purple);color:#fff}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+.brand{display:flex;align-items:center;gap:14px}
+.brand svg{width:46px;height:auto;flex:none}
+.plate{background:var(--yellow);color:var(--purple);padding:5px 12px 6px;line-height:1}
+.plate strong{display:block;font:400 28px/1 var(--head);letter-spacing:.02em}
+.plate small{display:block;color:var(--black);font-weight:600;font-size:11.5px;letter-spacing:.28em;margin-top:3px}
+.tools{display:flex;align-items:center;gap:10px;font-size:14px}
+.tools .date{opacity:.85}
+.btn{font:600 15px var(--body);border:0;cursor:pointer;padding:10px 18px;background:var(--yellow);color:var(--purple);border-radius:2px}
+.btn:hover{background:#fff}
+.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);padding:8px 12px}
+.ghost:hover{background:rgba(255,255,255,.14)}
+nav.main{background:var(--purple-deep);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+nav.main .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.main a{color:#fff;padding:13px 16px;font-weight:500;white-space:nowrap;border-bottom:3px solid transparent}
+nav.main a:hover,nav.main a.on{border-color:var(--yellow)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--purple-deep);z-index:10}
+
+/* lead */
+.lead{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;padding:34px 0 18px}
+.hero{position:relative;background:var(--purple);color:#fff;min-height:420px;padding:32px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero .mic{position:absolute;right:-30px;top:-20px;width:300px;opacity:.12}
+.tag{display:inline-block;background:var(--yellow);color:var(--purple);font-weight:600;font-size:13.5px;padding:2px 10px;margin-bottom:12px;align-self:flex-start}
+.hero h1{font:400 clamp(28px,4.4vw,46px)/1.08 var(--head);margin:0 0 14px;max-width:18ch;position:relative}
+.hero p{margin:0 0 16px;max-width:52ch;color:#e6dcf7;position:relative}
+.meta{font-size:14px;color:var(--muted)}
+.hero .meta{color:#cbbbe8;position:relative}
+.side h2{font:400 20px var(--head);margin:0 0 6px;padding-bottom:10px;border-bottom:4px solid var(--yellow)}
+.side article{padding:14px 0;border-bottom:1px solid var(--line)}
+.side h3{margin:4px 0;font-size:18px;line-height:1.3;font-weight:600}
+.side a:hover h3,.feed a:hover h3{text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
+.cat{font-weight:600;color:var(--purple);font-size:14px}
+:root[data-theme="dark"] .cat{color:var(--yellow)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cat{color:var(--yellow)}}
+
+/* feed */
+.feedhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:26px 0 10px}
+.feedhead h2{font:400 26px var(--head);margin:0}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:500 14.5px var(--body);cursor:pointer;background:var(--surface);color:var(--text);border:1.5px solid var(--line);padding:6px 14px;border-radius:99px}
+.chip[aria-pressed="true"]{background:var(--purple);border-color:var(--purple);color:#fff}
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feed article{background:var(--surface);border-top:5px solid var(--purple);padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px}
+.feed article:nth-child(3n+2){border-top-color:var(--yellow)}
+.feed h3{margin:0;font-size:20px;line-height:1.28;font-weight:600}
+.feed p{margin:0;color:var(--muted);font-size:15.5px}
+.empty{grid-column:1/-1;color:var(--muted)}
+
+/* audio band */
+.audio{background:var(--yellow);color:var(--black);margin:46px 0 0}
+.audio .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;padding-top:34px;padding-bottom:34px}
+.audio svg{width:84px;height:auto}
+.audio h2{font:400 clamp(24px,3.4vw,34px)/1.1 var(--head);color:var(--purple);margin:0 0 6px}
+.audio p{margin:0;max-width:58ch}
+.audio .btn{background:var(--purple);color:#fff}
+.audio .btn:hover{background:var(--black)}
+
+/* services + newsletter */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:44px 0}
+.box{background:var(--surface);padding:28px;border-left:6px solid var(--purple)}
+.box h2{font:400 24px var(--head);margin:0 0 10px}
+.box ul{margin:0;padding-left:20px;color:var(--muted)}
+.box li{margin:4px 0}
+form.news{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+form.news input{flex:1 1 200px;font:400 16px var(--body);padding:11px 12px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);border-radius:2px}
+.ok{margin:10px 0 0;font-weight:600;color:var(--purple)}
+:root[data-theme="dark"] .ok{color:var(--yellow)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ok{color:var(--yellow)}}
+
+footer{background:var(--black);color:#cfc6e0;font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;padding-top:28px;padding-bottom:28px}
+footer strong{color:var(--yellow);font-family:var(--head);font-weight:400}
+footer a:hover{color:var(--yellow)}
+
+@media (max-width:860px){
+  .lead,.duo{grid-template-columns:1fr}
+  .feed{grid-template-columns:1fr 1fr}
+  .audio .wrap{grid-template-columns:1fr;text-align:left}
+  .tools .date{display:none}
+}
+@media (max-width:560px){
+  .feed{grid-template-columns:1fr}
+  .hero{min-height:360px;padding:22px}
+  .plate strong{font-size:22px}
+  .brand svg{width:38px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-  <p><a href="hayle-media-solutions.html">Open Hayle Media Solutions</a></p>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mic" viewBox="520 310 460 640">
+    <g fill="none" stroke="currentColor" stroke-width="40">
+      <path d="M622 613V473A128 128 0 0 1 878 473V613"/>
+      <path d="M622 643V683A128 128 0 0 0 878 683V643"/>
+      <path d="M555 643V683A195 195 0 0 0 945 683V643"/>
+    </g>
+    <g fill="currentColor">
+      <path d="M535 613V587a20 20 0 0 1 40 0V613z"/>
+      <path d="M925 613V587a20 20 0 0 1 40 0V613z"/>
+      <rect x="731" y="895" width="45" height="40"/>
+    </g>
+    <g stroke="currentColor" stroke-width="12" stroke-linecap="round">
+      <path d="M677 428V606M714 428V606M751 428V606M788 428V606M825 428V606"/>
+    </g>
+  </symbol>
+</svg>
+
+<div class="ticker"><div class="wrap"><b>Latest</b><span id="tick"></span></div></div>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Hayle Media Solutions home">
+      <svg viewBox="520 310 460 640" style="color:#fff" role="img" aria-label="Microphone"><use href="#mic"/></svg>
+      <span class="plate"><strong>HAYLE</strong><small>Media Solutions</small></span>
+    </a>
+    <div class="tools">
+      <span class="date" id="date"></span>
+      <button class="btn ghost" id="theme" type="button" aria-label="Switch light or dark theme">Theme</button>
+      <a class="btn" href="#subscribe">Subscribe</a>
+    </div>
+  </div>
+</header>
+<nav class="main" aria-label="Sections"><div class="wrap">
+  <a class="on" href="#top">Home</a><a href="#news" data-go="Politics">Politics</a><a href="#news" data-go="Business">Business</a>
+  <a href="#news" data-go="Society">Society</a><a href="#news" data-go="Sport">Sport</a><a href="#news" data-go="Culture">Culture</a>
+  <a href="#audio">Audio</a><a href="#services">Our services</a>
+</div></nav>
+
+<main id="top">
+  <div class="wrap">
+    <section class="lead" aria-label="Top stories">
+      <a class="hero" id="hero" href="#news"></a>
+      <aside class="side"><h2>Also in the news</h2><div id="side"></div></aside>
+    </section>
+
+    <section id="news">
+      <div class="feedhead">
+        <h2>Latest from Somaliland</h2>
+        <div class="chips" id="chips" role="group" aria-label="Filter by section"></div>
+      </div>
+      <div class="feed" id="feed" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <section class="audio" id="audio">
+    <div class="wrap">
+      <svg viewBox="520 310 460 640" style="color:var(--purple)" aria-hidden="true"><use href="#mic"/></svg>
+      <div>
+        <h2>Hayle Radio and podcasts</h2>
+        <p>Interviews, community voices and daily news bulletins in Somali and English, recorded in Berbera.</p>
+      </div>
+      <a class="btn" href="#subscribe">Get new episodes</a>
+    </div>
+  </section>
+
+  <div class="wrap duo">
+    <section class="box" id="services">
+      <h2>What Hayle Media Solutions does</h2>
+      <ul>
+        <li>News reporting and live coverage</li>
+        <li>Video, radio and podcast production</li>
+        <li>Social media management for businesses</li>
+        <li>Event coverage, advertising and branding</li>
+      </ul>
+    </section>
+    <section class="box" id="subscribe">
+      <h2>Get the daily brief</h2>
+      <p style="margin:0;color:var(--muted)">One short email each morning with the top stories from across Somaliland.</p>
+      <form class="news" id="form">
+        <input type="email" id="email" placeholder="Your email address" aria-label="Email address" required>
+        <button class="btn" type="submit" style="background:var(--purple);color:#fff">Subscribe</button>
+      </form>
+      <p class="ok" id="ok" hidden>Thanks. You are on the list.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Hayle Media Solutions</strong><br>Berbera, Somaliland</div>
+    <div>Contact: <a href="mailto:info@haylemedia.example">info@haylemedia.example</a><br>Facebook: Hayle Media Solutions</div>
+    <div>© <span id="yr"></span> Hayle Media Solutions.<br>All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+/* Edit this list to publish your own stories. */
+const STORIES=[
+ {c:"Politics",t:"Sample headline: Lawmakers open a new session in Berbera",d:"Replace this text with your own report. Add the key facts in the first two sentences.",a:"Hayle Newsroom",w:"2 hours ago"},
+ {c:"Business",t:"Sample headline: Livestock traders prepare for the export season",d:"Replace this text with your own report from the port, the market or the trading floor.",a:"Business desk",w:"3 hours ago"},
+ {c:"Society",t:"Sample headline: Neighbourhood groups launch a clean-up campaign",d:"Replace this text with a community story, with names, places and quotes.",a:"Community desk",w:"5 hours ago"},
+ {c:"Sport",t:"Sample headline: Local league returns with a full weekend of matches",d:"Replace this text with results, scorers and the next fixtures.",a:"Sports desk",w:"6 hours ago"},
+ {c:"Culture",t:"Sample headline: Poets and musicians gather for an evening of heritage",d:"Replace this text with a culture or arts story from Somaliland.",a:"Culture desk",w:"Yesterday"},
+ {c:"Politics",t:"Sample headline: Officials meet partners to discuss regional trade",d:"Replace this text with the outcome of the meeting and what happens next.",a:"Hayle Newsroom",w:"Yesterday"},
+ {c:"Business",t:"Sample headline: Young entrepreneurs open a new digital hub",d:"Replace this text with a story about local business and technology.",a:"Business desk",w:"Yesterday"},
+ {c:"Society",t:"Sample headline: Schools prepare for the new term",d:"Replace this text with education news, dates and what families need to know.",a:"Community desk",w:"2 days ago"},
+ {c:"Culture",t:"Sample headline: A look inside Berbera’s growing art scene",d:"Replace this text with a feature, an interview or a photo story.",a:"Culture desk",w:"2 days ago"}
+];
+const CATS=["All","Politics","Business","Society","Sport","Culture"];
+const $=id=>document.getElementById(id);
+const card=(s,cls)=>`<article><span class="cat">${s.c}</span><a href="#news"><h3>${s.t}</h3></a><span class="meta">${s.a} · ${s.w}</span></article>`;
+
+const h=STORIES[0];
+$("hero").innerHTML=`<svg class="mic" viewBox="520 310 460 640" style="color:#fff" aria-hidden="true"><use href="#mic"/></svg><span class="tag">${h.c}</span><h1>${h.t}</h1><p>${h.d}</p><span class="meta">${h.a} · ${h.w}</span>`;
+$("side").innerHTML=STORIES.slice(1,5).map(s=>card(s)).join("");
+$("tick").textContent=STORIES.slice(0,3).map(s=>s.t.replace("Sample headline: ","")).join("   •   ");
+
+let cur="All";
+function draw(){
+  $("chips").innerHTML=CATS.map(c=>`<button class="chip" type="button" aria-pressed="${c===cur}" data-c="${c}">${c}</button>`).join("");
+  const list=STORIES.filter(s=>cur==="All"||s.c===cur);
+  $("feed").innerHTML=list.length?list.map(s=>`<article><span class="cat">${s.c}</span><a href="#news"><h3>${s.t}</h3></a><p>${s.d}</p><span class="meta">${s.a} · ${s.w}</span></article>`).join(""):`<p class="empty">No stories in this section yet.</p>`;
+}
+$("chips").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){cur=b.dataset.c;draw();}});
+document.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",()=>{cur=a.dataset.go;draw();}));
+draw();
+
+$("date").textContent=new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+$("yr").textContent=new Date().getFullYear();
+$("form").addEventListener("submit",e=>{e.preventDefault();$("ok").hidden=false;$("form").reset();});
+
+$("theme").addEventListener("click",()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  r.dataset.theme=dark?"light":"dark";
+});
+</script>
 </body>
 </html>
