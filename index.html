@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hayle Media Solutions – BBC Somali News</title>
+<title>Hayle Media Solutions – Live News</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@400;500;600&display=swap">
 <style>
@@ -134,7 +134,7 @@ footer a:hover{color:var(--yellow)}
   </symbol>
 </svg>
 
-<div class="ticker"><div class="wrap"><b>BBC Somali</b><span id="tick">Loading latest headlines…</span></div></div>
+<div class="ticker"><div class="wrap"><b>Latest</b><span id="tick">Loading latest headlines…</span></div></div>
 
 <header class="top">
   <div class="wrap bar">
@@ -149,7 +149,7 @@ footer a:hover{color:var(--yellow)}
   </div>
 </header>
 <nav class="main" aria-label="Sections"><div class="wrap">
-  <a class="on" href="#top">Home</a><a href="#news">Latest news</a><a href="https://www.bbc.com/somali" target="_blank" rel="noopener noreferrer">BBC Somali</a>
+  <a class="on" href="#top">Home</a><a href="#news">Latest news</a><a href="https://www.bbc.com/somali" target="_blank" rel="noopener noreferrer">Source BBC Somali</a>
   <a href="#audio">Audio</a><a href="#services">Our services</a>
 </div></nav>
 
@@ -161,8 +161,8 @@ footer a:hover{color:var(--yellow)}
     </section>
 
     <section id="news">
-      <div class="feedhead"><h2>Live BBC Somali headlines</h2></div>
-      <p class="feed-status" id="feed-status" role="status" aria-live="polite">Loading the latest BBC Somali headlines…</p>
+      <div class="feedhead"><h2>Latest headlines</h2></div>
+      <p class="feed-status" id="feed-status" role="status" aria-live="polite">Loading latest headlines…</p>
       <div class="feed" id="feed" aria-live="polite"></div>
     </section>
   </div>
@@ -238,20 +238,10 @@ function externalLink(url){
   link.rel="noopener noreferrer";
   return link;
 }
-function storyMeta(story){
-  const published=story.publishedAt?new Date(story.publishedAt).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):"Latest";
-  return `BBC Somali · ${published}`;
-}
-function makeTag(){
-  const tag=document.createElement("span");
-  tag.className="tag";
-  tag.textContent="BBC Somali";
-  return tag;
-}
-function makeMeta(story){
+function makeMeta(){
   const meta=document.createElement("span");
   meta.className="meta";
-  meta.textContent=storyMeta(story);
+  meta.textContent="Source BBC Somali";
   return meta;
 }
 function renderStories(){
@@ -261,14 +251,14 @@ function renderStories(){
   hero.href=lead.link;
   hero.target="_blank";
   hero.rel="noopener noreferrer";
-  hero.setAttribute("aria-label",`Read on BBC Somali: ${lead.title}`);
+  hero.setAttribute("aria-label",`Read source story: ${lead.title}`);
   const copy=document.createElement("div");
   copy.className="hero-copy";
   const headline=document.createElement("h1");
   headline.textContent=lead.title;
   const summary=document.createElement("p");
-  summary.textContent="Read the full story on BBC Somali.";
-  copy.append(makeTag(),headline,summary,makeMeta(lead));
+  summary.textContent="Open the full story.";
+  copy.append(headline,summary,makeMeta());
   hero.append(copy);
 
   const side=$("side");
@@ -278,18 +268,17 @@ function renderStories(){
     const headline=document.createElement("h3");
     headline.textContent=story.title;
     link.append(headline);
-    article.append(makeTag(),link,makeMeta(story));
+    article.append(link,makeMeta());
     return article;
   }));
   $("tick").textContent=stories.slice(0,3).map(story=>story.title).join("   •   ");
   $("feed").replaceChildren(...stories.map(story=>{
     const article=document.createElement("article");
-    article.append(makeTag());
     const link=externalLink(story.link);
     const headline=document.createElement("h3");
     headline.textContent=story.title;
     link.append(headline);
-    article.append(link,makeMeta(story));
+    article.append(link,makeMeta());
     return article;
   }));
 }
@@ -302,14 +291,14 @@ function showUnavailable(){
   const copy=document.createElement("div");
   copy.className="hero-copy";
   const headline=document.createElement("h1");
-  headline.textContent="BBC Somali headlines are temporarily unavailable.";
+  headline.textContent="Live headlines are temporarily unavailable.";
   const summary=document.createElement("p");
-  summary.textContent="Visit BBC Somali directly or wait while we retry.";
-  copy.append(makeTag(),headline,summary);
+  summary.textContent="Use the source link above or wait while we retry.";
+  copy.append(headline,summary);
   hero.replaceChildren(copy);
   $("side").replaceChildren();
-  $("tick").textContent="BBC Somali headlines are temporarily unavailable.";
-  $("feed").textContent="Unable to load the live BBC Somali headlines right now.";
+  $("tick").textContent="Live news is temporarily unavailable.";
+  $("feed").textContent="Unable to load live headlines right now.";
 }
 function loadTime(){
   return new Date(lastUpdatedAt).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
@@ -319,7 +308,7 @@ async function loadStories(){
   loading=true;
   const controller=new AbortController();
   const timeout=setTimeout(()=>controller.abort(),15000);
-  if(!stories.length)$("feed-status").textContent="Loading the latest BBC Somali headlines…";
+  if(!stories.length)$("feed-status").textContent="Loading latest headlines…";
   try{
     const response=await fetch(BBC_API,{cache:"no-store",signal:controller.signal});
     if(!response.ok)throw new Error(`BBC feed service returned ${response.status}`);
@@ -330,14 +319,14 @@ async function loadStories(){
     stories=nextStories;
     lastUpdatedAt=Date.now();
     renderStories();
-    $("feed-status").textContent=`Live headlines from BBC Somali · updated ${loadTime()}`;
+    $("feed-status").textContent=`Live headlines updated ${loadTime()}`;
   }catch(error){
     console.error("Could not load BBC Somali headlines.",error);
     if(stories.length){
-      $("feed-status").textContent=`Could not refresh BBC Somali. Showing headlines last loaded at ${loadTime()}.`;
+      $("feed-status").textContent=`Could not refresh. Showing headlines last loaded at ${loadTime()}.`;
     }else{
       showUnavailable();
-      $("feed-status").textContent="BBC Somali headlines could not be loaded. Retrying automatically.";
+      $("feed-status").textContent="Headlines could not be loaded. Retrying automatically.";
     }
   }finally{
     clearTimeout(timeout);
